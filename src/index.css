@@ -1,13 +1,88 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-size: 18px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid black;
+  padding-left: 10px;
+  padding-right: 10px;
+  position: sticky;
+  top:0;
+  background-color: white;;
+}
+
+.logo {
+  text-transform: capitalize;
+  font-size: 18px;
+  font-weight: bolder;
+}
+
+.side-items {
+  display: flex;
+  align-items: center;
+}
+
+.cart {
+  width: 40px;
+  height: 40px;
+  margin-left: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.cart > img {
+  width: 100%;
+  height: 100%;
+}
+
+ui {
+  display: flex;
+}
+
+nav > ui > li {
+  list-style-type: none;
+  margin-left: 20px;
+}
+
+.res-body {
+  padding: 50px;
+}
+
+.res-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.res-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  max-width: 200px;
+  margin:30px;
+  padding: 10px;
+}
+
+.res-img {
+  flex: 1;
+  overflow: hidden;
+}
+
+.res-img > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.res-info {
+  flex: 1.5;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.cue{
+  margin-left: 3px;
 }
