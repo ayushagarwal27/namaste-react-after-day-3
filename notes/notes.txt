@@ -26,3 +26,30 @@
    - Based on two assumptions :-
       1. Two elements of different types will produce different trees.
       2. The developer can hint at which child elements may be stable across different renders with a key prop.
+
+4. What is React Fiber ?
+   - It is re-implementation of react core "diff" algorithm.
+   - The reconciler does the work of computing which parts of a tree have changed; the renderer then uses that information to actually update the rendered app.
+   - This separation means that React DOM and React Native can use their own renderers while sharing the same reconciler, provided by React core.
+   - Fiber reimplements the react reconciler. It is not principally concerned with rendering.
+
+7. Why do we need keys in React ? When do we need keys in React ?
+   - If we have same elements in react without unique attribute, react will mutate every child, even if not needed be. Example - when we add new <li> item over other <li> items. 
+   - For this react uses 'key' attribute, which must be unique to element.
+   - Key need to be unique among similar sibling elements, not globally unique.
+   - Keys should be stable, predictable, and unique. Unstable keys (like those produced by Math.random()) will cause many component instances and DOM nodes to be unnecessarily recreated, which can cause performance degradation and lost state in child components.
+
+8. Can we use index as keys in React ?
+   - Although index as keys should not be preferred, as last resort we can use index as keys on elements that are not to be reordered.
+   - if items get reordered it can cause performance issues, as when one element is deleted or added into list of items, other items shift from there place, thus changing there key value from earlier.
+   - If the key is same as before React assumes that the DOM element represents the same component / element as before. But that is no longer true.
+
+9. What is props in React ? 
+   - "props" stands for properties, are object argument with data.
+   - JSX attribute and children are passed into single JS object, known as "props"
+   - props are read-only.
+   - A component must never modify their own props. (like pure functions).
+
+10. What is a Config Driven UI ?
+   - In config driven UI we keep config in JSON format, which can be used to do all the mundane and repetitive tasks of rendering.
+   - we can write code to loop over the config, and for each entry in the config, we determine it's component to be rendered based on type passed, and other data such as attributes etc.
