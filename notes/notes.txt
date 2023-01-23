@@ -1,0 +1,27 @@
+1. What is the difference between Named Export, Default export and * as export ?
+   - Named export uses export keyword before function, variable, object you want to export.
+   - Named export allows multiple exports from a single file.
+   - Named imports can be made using { } specifying name of module, which we want to import and exported.
+   - There can only be only one Default export per file.
+   - While importing we can name Default export anything we like.
+   - Instead of using curly braces we can form an object of named exports at time of importing from same file using '* as' wildcard imports. This forms the object of all the named exports from file.
+   
+2. What is the importance of config.js / constants file ?
+   - Using this file, we can store all the hardcoded configuration, constants data in one file.
+   - Reusability, Maintainability, helps in making changes in one file if config changes in future, rather than making changes in multiple files.
+   - It makes working with our application simple, since all developers in team - knows where all the hardcoded data is. Prevents error-making, we can import already defined data instead of writing it again.
+
+3. What are React Hooks ?
+   - Hooks are new addition in React 16.8.0 They let you to add state variable and other features in React without writing a class.
+   - Hooks are functions that let one "hook into" React state and lifecycle features from function component.
+   - Hooks don't work inside classes.
+   - React provides certain in-built hooks like 'useState'.
+   - We can also create our own hooks to reuse state behavior between different components. 
+   - hooks names start with 'use'
+
+4. Why do we need a useState Hook ?
+   - we requires useState hook to declare state variables inside function components.
+   - useState return current state and the function that updates it.
+   - React will preserve the state of state variables between re-renders.
+   - Only argument useState takes is initial state.
+   - useState creates state for first time when our component renders. On subsequent re-renders useState gives  current state.
