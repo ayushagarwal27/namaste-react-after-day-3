@@ -1,22 +1,41 @@
 import RestaurantCard from './RestaurantCard';
-import { data } from '../../config';
 import { useState } from 'react';
+import { useEffect } from 'react';
 
 const filterRestaurants = (restaurants, keyword) => {
   const filteredData = restaurants.filter(restaurant =>
-    restaurant.info.name.includes(keyword),
+    restaurant?.data?.name?.toLowerCase().includes(keyword.toLowerCase()),
   );
   return filteredData;
 };
 
 const RestaurantList = () => {
   const [searchText, setSearchText] = useState('');
-  const [restaurantList, setRestaurantList] = useState(data);
+  const [restaurantList, setRestaurantList] = useState([]);
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
+
+  useEffect(() => {
+    getRestaurantList();
+  }, []);
+
+  const getRestaurantList = async () => {
+    const res = await fetch(
+      'https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7040592&lng=77.10249019999999&page_type=DESKTOP_WEB_LISTING',
+    );
+    const data = await res.json();
+    const cards = data?.data?.cards[2].data?.data?.cards;
+    setRestaurantList(cards);
+    setFilteredRestaurants(cards);
+  };
 
   const filterData = (restaurants, keyword) => {
     const filteredData = filterRestaurants(restaurants, keyword);
-    setRestaurantList(filteredData);
+    setFilteredRestaurants(filteredData);
   };
+
+  if (restaurantList.length === 0) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <>
@@ -28,20 +47,27 @@ const RestaurantList = () => {
         onChange={e => {
           setSearchText(e.target.value);
           if (e.target.value === '') {
-            filterData(data, '');
+            filterData(restaurantList, '');
           }
         }}
       />
       <button
         className='search-btn'
-        onClick={() => filterData(restaurantList, searchText)}
+        onClick={() => filterData(filteredRestaurants, searchText)}
       >
         Search
       </button>
       <div className='res-list'>
-        {restaurantList.map(restaurant => (
-          <RestaurantCard {...restaurant.info} key={restaurant.info.resId} />
-        ))}
+        {filteredRestaurants.length > 0 ? (
+          filteredRestaurants.map(restaurant => (
+            <RestaurantCard
+              {...restaurant?.data}
+              key={restaurant?.data?.uuid}
+            />
+          ))
+        ) : (
+          <p>No restaurant with search text found</p>
+        )}
       </div>
     </>
   );
