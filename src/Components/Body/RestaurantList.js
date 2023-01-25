@@ -1,6 +1,7 @@
-import RestaurantCard from './RestaurantCard';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import RestaurantCard from './RestaurantCard';
+import Shimmer from './Shimmer';
 
 const filterRestaurants = (restaurants, keyword) => {
   const filteredData = restaurants.filter(restaurant =>
@@ -19,13 +20,17 @@ const RestaurantList = () => {
   }, []);
 
   const getRestaurantList = async () => {
-    const res = await fetch(
-      'https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7040592&lng=77.10249019999999&page_type=DESKTOP_WEB_LISTING',
-    );
-    const data = await res.json();
-    const cards = data?.data?.cards[2].data?.data?.cards;
-    setRestaurantList(cards);
-    setFilteredRestaurants(cards);
+    try {
+      const res = await fetch(
+        'https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7040592&lng=77.10249019999999&page_type=DESKTOP_WEB_LISTING',
+      );
+      const data = await res.json();
+      const cards = data?.data?.cards[2].data?.data?.cards;
+      setRestaurantList(cards);
+      setFilteredRestaurants(cards);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const filterData = (restaurants, keyword) => {
@@ -34,7 +39,7 @@ const RestaurantList = () => {
   };
 
   if (restaurantList.length === 0) {
-    return <p>Loading...</p>;
+    return <Shimmer />;
   }
 
   return (
