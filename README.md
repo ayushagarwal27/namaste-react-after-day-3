@@ -1,1 +1,1 @@
-# Day 5 - Explore the world.
+# Day 5 - Let's get hooked.
