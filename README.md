@@ -1,1 +1,1 @@
-# Day 5 - Explore the world.
+# Day 6 - Exploring the world.
