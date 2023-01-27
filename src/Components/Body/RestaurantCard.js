@@ -1,3 +1,5 @@
+import { IMG_URL } from '../../config';
+
 const RestaurantCard = ({
   name,
   cloudinaryImageId: imageID,
@@ -8,10 +10,7 @@ const RestaurantCard = ({
   return (
     <div className='res-card'>
       <div className='res-img'>
-        <img
-          src={`https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/${imageID}`}
-          alt={name}
-        />
+        <img src={`${IMG_URL}/${imageID}`} alt={name} />
       </div>
       <div className='res-info'>
         <p>{name}</p>
