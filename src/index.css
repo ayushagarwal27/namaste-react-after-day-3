@@ -12,6 +12,7 @@ header {
   position: sticky;
   top: 0;
   background-color: white;
+  z-index: 10;
 }
 
 .logo {
@@ -65,6 +66,11 @@ nav > ul > li {
   padding: 10px;
 }
 
+.res-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 1px 10px 30px rgba(0, 0, 0, 0.36);
+}
+
 .res-shimmer {
   display: flex;
   flex-direction: column;
@@ -108,4 +114,23 @@ nav > ul > li {
   padding: 12px 10px;
   margin: 10px;
   font-size: 16px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+
+.res-detail{
+  display: flex;
+  /* flex-wrap: wrap; */
+}
+
+.res-menu{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-width: 800px;
+  margin-left: 50px;
 }

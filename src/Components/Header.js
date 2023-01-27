@@ -1,9 +1,12 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export const Title = () => {
   return (
     <div>
-      <span className='logo'>Food Nation</span>
+      <Link to='/'>
+        <span className='logo'>Food Nation</span>
+      </Link>
     </div>
   );
 };
@@ -16,9 +19,15 @@ const Header = () => {
       <div className='side-items'>
         <nav>
           <ul>
-            <li>Home</li>
-            <li>Contact Us</li>
-            <li>About Us</li>
+            <li>
+              <Link to='/'>Home</Link>
+            </li>
+            <li>
+              <Link to='/contactUs'>Contact Us</Link>
+            </li>
+            <li>
+              <Link to='/aboutUs'>About Us</Link>
+            </li>
           </ul>
         </nav>
         <div className='cart'>
@@ -27,7 +36,6 @@ const Header = () => {
             alt='cart'
           />
         </div>
-
 
         <button
           onClick={() => {

@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import RestaurantCard from './RestaurantCard';
 import Shimmer from './Shimmer';
 import { SWIGGY_GET_ALL_RESTAURANTS } from '../../config';
+import { Link } from 'react-router-dom';
 
 const filterRestaurants = (restaurants, keyword) => {
   const filteredData = restaurants.filter(restaurant =>
@@ -64,10 +65,12 @@ const RestaurantList = () => {
       <div className='res-list'>
         {filteredRestaurants.length > 0 ? (
           filteredRestaurants.map(restaurant => (
-            <RestaurantCard
-              {...restaurant?.data}
+            <Link
+              to={`/restaurant/${restaurant?.data?.id}`}
               key={restaurant?.data?.uuid}
-            />
+            >
+              <RestaurantCard {...restaurant?.data} />
+            </Link>
           ))
         ) : (
           <p>No restaurant with search text found</p>

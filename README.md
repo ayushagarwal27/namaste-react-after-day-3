@@ -1,1 +1,1 @@
-# Day 6 - Exploring the world.
+# Day 7 - Finding the Path.
