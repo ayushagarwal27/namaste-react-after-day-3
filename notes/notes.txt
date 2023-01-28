@@ -1,0 +1,40 @@
+1. What are various ways to add images into our App ? Explain with code examples.
+   - We can directly use cdn links of images inside 'src' attribute of <img/> tags
+   - We can import images directly inside JS Module. This tells webpack to include it in bundle.
+   - Importing a file gives you a string value, i.e the final path you can reference in your code.
+   - This ensures that when the project is built, webpack will correctly move the images into the build folder, and provide us with correct paths.
+
+                              import logo from './logo.png';
+
+                              function Header() {
+                                // Import result is the URL of your image
+                                return <img src={logo} alt="Logo" />;
+                              }
+  
+2. What would happen if we do console.log(useState()) ?
+   - we get an array containing two elements
+   - first is undefined, since we hav not provided any initial value 
+   - second it gives us update function, for updating state variable.
+
+3. How will useEffect behave, if we don't have a dependency array ?
+   - The effect will run after every render of the component
+
+4. What is SPA ?
+  - An SPA (Single-page application) is a web app implementation that loads only a single web document, and then updates the body content of that single document via JavaScript APIs such as XMLHttpRequest and Fetch when different content is to be shown.
+  - This therefore allows users to use websites without loading whole new pages from the server, which can result in performance gains and a more dynamic experience, 
+  - Some tradeoff disadvantages such as SEO, more effort required to maintain state, implement navigation, and do meaningful performance monitoring.
+
+5. What is difference between Client Side Routing and Server Side Routing ?
+  - Server side routing 
+      - In traditional websites, the browser requests a document from a web server, downloads and evaluates CSS and JavaScript assets, and renders the HTML sent from the server. When the user clicks a link, it starts the process all over again for a new page.
+      - A server-side request causes the whole page to refresh. This is because a new GET request is sent to the server which responds with a new document, completely discarding the old page altogether.
+      - Every request results in a full-page refresh. That means that unnecessary data is being requested. A header and a footer of a webpage often stays the same. This isn’t something you would want to request from the server again.
+      - It can take a while for the page to be rendered. However, this is only the case when the document to be rendered is very large or when you have slow internet speed.
+
+   - Client side routing 
+      - A client-side route happens when the route is handled internally by the JavaScript that is loaded on the page. When a user clicks on a link, the URL changes but the request to the server is prevented. 
+      - The adjustment to the URL will result in a changed state of the application. The changed state will ultimately result in a different view of the webpage.
+      - This could be the rendering of a new component, or even a request to a server for some data that the application will turn into some HTML elements.
+      - It is important to note that the whole page won’t refresh when using client-side routing. There are just some elements inside the application that will change.
+      - Because less data is processed, routing between views is generally faster.
+
