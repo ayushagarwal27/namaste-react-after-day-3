@@ -7,6 +7,7 @@ import ContactUs from './Components/ContactUs';
 import AboutUs from './Components/AboutUs';
 import ErrorPage from './Components/ErrorPage';
 import RestaurantDetail from './Components/RestaurantDetail';
+import LoginPage from './Components/LoginPage';
 import './index.css';
 
 const AppLayout = () => {
@@ -24,9 +25,11 @@ const appRouter = createBrowserRouter([
     element: <AppLayout />,
     children: [
       { path: '/', element: <Body /> },
-      { path: '/aboutUs', element: <AboutUs /> },
-      { path: '/contactUs', element: <ContactUs /> },
-      { path: '/restaurant/:id', element: <RestaurantDetail /> },
+      { path: 'aboutUs', element: <AboutUs /> },
+      { path: 'contactUs', element: <ContactUs /> },
+      { path: 'restaurant/:id', element: <RestaurantDetail /> },
+      { path: 'restaurant', element: <RestaurantDetail /> },
+      { path: 'login', element: <LoginPage /> },
     ],
     errorElement: <ErrorPage />,
   },

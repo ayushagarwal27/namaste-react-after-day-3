@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const Title = () => {
   return (
@@ -13,6 +13,7 @@ export const Title = () => {
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
   return (
     <header>
       <Title />
@@ -40,6 +41,11 @@ const Header = () => {
         <button
           onClick={() => {
             setIsLoggedIn(!isLoggedIn);
+            if (!isLoggedIn) {
+              navigate('/login');
+            } else {
+              navigate('/');
+            }
           }}
           className='search-btn'
         >

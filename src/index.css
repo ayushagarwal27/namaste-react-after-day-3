@@ -134,3 +134,25 @@ a {
   max-width: 800px;
   margin-left: 50px;
 }
+
+.form-container{
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.form-container > input, .form-container > button {
+  padding: 20px;
+  font-size: 18px;
+  margin:10px;
+}
+
+.form-container > button {
+  background-color: rgb(231, 143, 61);
+  color: white;
+}
+
+.form-container > button:hover{
+  background-color: rgb(162, 100, 42);
+}
