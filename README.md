@@ -1,1 +1,1 @@
-# Day 7 - Finding the Path.
+# Day 8 - Let's get Classy.

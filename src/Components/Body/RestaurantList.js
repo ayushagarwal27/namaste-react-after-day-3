@@ -17,8 +17,6 @@ const RestaurantList = () => {
   const [restaurantList, setRestaurantList] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
 
-  console.log(useState());
-
   useEffect(() => {
     getRestaurantList();
   }, []);
