@@ -27,7 +27,7 @@
       1. Two elements of different types will produce different trees.
       2. The developer can hint at which child elements may be stable across different renders with a key prop.
 
-4. What is React Fiber ?
+6. What is React Fiber ?
    - It is re-implementation of react core "diff" algorithm.
    - The reconciler does the work of computing which parts of a tree have changed; the renderer then uses that information to actually update the rendered app.
    - This separation means that React DOM and React Native can use their own renderers while sharing the same reconciler, provided by React core.
