@@ -1,42 +1,26 @@
 import { useState } from 'react';
-import { useEffect } from 'react';
 import RestaurantCard from './RestaurantCard';
 import Shimmer from './Shimmer';
-import { SWIGGY_GET_ALL_RESTAURANTS } from '../../config';
 import { Link } from 'react-router-dom';
-
-const filterRestaurants = (restaurants, keyword) => {
-  const filteredData = restaurants.filter(restaurant =>
-    restaurant?.data?.name?.toLowerCase().includes(keyword.toLowerCase()),
-  );
-  return filteredData;
-};
+import { filterRestaurants } from '../../utils/helper';
+import useRestaurantList from '../../hooks/useRestaurantList';
+import { useEffect } from 'react';
 
 const RestaurantList = () => {
   const [searchText, setSearchText] = useState('');
-  const [restaurantList, setRestaurantList] = useState([]);
+  const restaurantList = useRestaurantList();
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
-
-  useEffect(() => {
-    getRestaurantList();
-  }, []);
-
-  const getRestaurantList = async () => {
-    try {
-      const res = await fetch(SWIGGY_GET_ALL_RESTAURANTS);
-      const data = await res.json();
-      const cards = data?.data?.cards[2].data?.data?.cards;
-      setRestaurantList(cards);
-      setFilteredRestaurants(cards);
-    } catch (err) {
-      console.log(err);
-    }
-  };
 
   const filterData = (restaurants, keyword) => {
     const filteredData = filterRestaurants(restaurants, keyword);
     setFilteredRestaurants(filteredData);
   };
+
+  useEffect(() => {
+    if (restaurantList.length > 0) {
+      setFilteredRestaurants(restaurantList);
+    }
+  }, [restaurantList]);
 
   if (restaurantList.length === 0) {
     return <Shimmer />;

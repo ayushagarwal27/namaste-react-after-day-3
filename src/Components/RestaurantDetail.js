@@ -1,25 +1,11 @@
-import { useState } from 'react';
-import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { IMG_URL, SWIGGY_SINGLE_RESTAURANT } from '../config';
+import { IMG_URL } from '../config';
 import Shimmer from './Body/Shimmer';
+import useRestaurantDetail from '../hooks/useRestaurantDetail';
 
 const RestaurantDetail = () => {
-  const [restaurantDetail, setRestaurantDetail] = useState('');
   const { id } = useParams();
-
-  useEffect(() => {
-    const getRestaurantDetail = async () => {
-      try {
-        const res = await fetch(SWIGGY_SINGLE_RESTAURANT + id);
-        const detail = await res.json();
-        setRestaurantDetail(detail.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getRestaurantDetail();
-  }, [id]);
+  const restaurantDetail = useRestaurantDetail(id);
 
   if (!restaurantDetail) {
     return <Shimmer />;
@@ -41,7 +27,7 @@ const RestaurantDetail = () => {
       <div className='res-menu'>
         <h3>Menu Items</h3>
         {Object.values(restaurantDetail?.menu?.items)
-          .slice(0,15)
+          .slice(0, 15)
           .map(item => (
             <p key={item.id}>
               - {item.name}
