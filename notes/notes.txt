@@ -1,2 +1,17 @@
+1. When and why do we need lazy() ?
+  - Bundling is the process of following imported files and merging them into a single file: a “bundle”.
+  - As app size grows, so does the bundle size, especially when we use third party libraries in our app.
+  - For this reason we often use code splitting, which creates multiple bundles that can be dynamically loaded at runtime.
+  - It is also known as lazy loading, where we load only those files which are currently needed by the user. Thus improving the overall performance of our app.
+  - While we haven’t reduced the overall amount of code in our app, we’ve avoided loading code that the user may never need, and reduced the amount of code needed during the initial load.
+  - The React.lazy function lets you render a dynamic import as a regular component.
+  - React.lazy takes a function that must call a dynamic import(). This must return a Promise which resolves to a module with a default export containing a React component.
 
+2. What is Suspense ?
+  - We should render lazy components inside Suspense component, because it will prevent rendering to be suspended by react, while we are waiting lazy component to load.
+  - We can place the Suspense component anywhere above the lazy component. 
+  - We can even wrap multiple lazy components with a single Suspense component.
+  - The fallback prop of Suspense component accepts any React elements that we want to render while waiting for the lazy component to load. (Example - Loading Indicator).
+  - When we try to load lazy components without Suspense, react will throw an error, because it is trying to render a component, which has not been imported yet (loaded yet), react will suspends the rendering.
+  - When we wrap under Suspense, react will wait lazy components 'import' promise to resolve.
 
