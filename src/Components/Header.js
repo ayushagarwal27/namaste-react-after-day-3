@@ -5,7 +5,7 @@ export const Title = () => {
   return (
     <div>
       <Link to='/'>
-        <span className='logo'>Food Nation</span>
+        <span className='font-bold text-2xl'>Food Nation</span>
       </Link>
     </div>
   );
@@ -15,25 +15,25 @@ const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
   return (
-    <header>
+    <header className='flex justify-between items-center bg-yellow-100 p-1'>
       <Title />
-      <div className='side-items'>
+      <div className='flex items-center'>
         <nav>
-          <ul>
-            <li>
+          <ul className='flex items-center'>
+            <li className='ml-3'>
               <Link to='/'>Home</Link>
             </li>
-            <li>
+            <li className='ml-3'>
               <Link to='/contactUs'>Contact Us</Link>
             </li>
-            <li>
+            <li className='ml-3'>
               <Link to='/aboutUs'>About Us</Link>
             </li>
           </ul>
         </nav>
-        <div className='cart'>
+        <div className='w-8 h-8 -mb-2 ml-3'>
           <img
-            src='https://png.pngtree.com/png-clipart/20191120/original/pngtree-shopping-cart-icon-png-image_5060874.jpg'
+            src='https://www.freepnglogos.com/uploads/shopping-cart-png/shopping-cart-svg-png-icon-download-28.png'
             alt='cart'
           />
         </div>
@@ -47,11 +47,11 @@ const Header = () => {
               navigate('/');
             }
           }}
-          className='search-btn'
+          className='bg-yellow-800 rounded-lg px-4 py-3 text-yellow-50 hover:bg-yellow-700 ml-8 mr-1'
         >
           {isLoggedIn ? 'Logout' : 'Login'}
         </button>
-      </div>
+      </div> 
     </header>
   );
 };

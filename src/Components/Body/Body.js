@@ -2,7 +2,7 @@ import RestaurantList from './RestaurantList';
 
 const Body = () => {
   return (
-    <div className='res-body'>
+    <div className='flex flex-col'>
       <RestaurantList />
     </div>
   );

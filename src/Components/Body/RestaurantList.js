@@ -28,25 +28,27 @@ const RestaurantList = () => {
 
   return (
     <>
-      <input
-        type='text'
-        placeholder='search item'
-        className='search-bar'
-        value={searchText}
-        onChange={e => {
-          setSearchText(e.target.value);
-          if (e.target.value === '') {
-            filterData(restaurantList, '');
-          }
-        }}
-      />
-      <button
-        className='search-btn'
-        onClick={() => filterData(filteredRestaurants, searchText)}
-      >
-        Search
-      </button>
-      <div className='res-list'>
+      <div className='flex mt-4 mx-auto'>
+        <input
+          type='text'
+          placeholder='search item'
+          value={searchText}
+          onChange={e => {
+            setSearchText(e.target.value);
+            if (e.target.value === '') {
+              filterData(restaurantList, '');
+            }
+          }}
+          className='w-64 p-1 outline outline-1 outline-yellow-600'
+        />
+        <button
+          className='bg-yellow-600 py-3 px-4 text-white hover:bg-yellow-700 ml-3'
+          onClick={() => filterData(filteredRestaurants, searchText)}
+        >
+          Search
+        </button>
+      </div>
+      <div className='flex flex-wrap'>
         {filteredRestaurants.length > 0 ? (
           filteredRestaurants.map(restaurant => (
             <Link

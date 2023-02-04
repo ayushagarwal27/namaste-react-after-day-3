@@ -1,1 +1,1 @@
-# Day 9 - Optimizing our App.
+# Day 10 - Jo dikhta hai vo bikta hai
