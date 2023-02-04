@@ -15,3 +15,8 @@
   - When we try to load lazy components without Suspense, react will throw an error, because it is trying to render a component, which has not been imported yet (loaded yet), react will suspends the rendering.
   - When we wrap under Suspense, react will wait lazy components 'import' promise to resolve.
 
+3. Advantages and Disadvantages of using code splitting pattern.
+  - Major advantage of code splitting is bundle loaded initially will not include unnecessary code.
+  - Code splitting enables sending the minimal code required to provide value upfront, improving page-load times.
+  - One disadvantage with code-splitting, we now have boundaries where transitions will require downloading and executing a new chunk of code. This means that we’ll likely need to introduce loading indicators or develop strategies for efficient pre-loading and deal with the associated tradeoffs.
+  - Its a little complex because we need to be sure what components we don't want on initial render.
