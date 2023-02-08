@@ -1,3 +1,0 @@
-1. Why do we use .postcssrc file ?
-   - PostCSS is tool for transforming CSS with JavaScript.
-   - postcssrc is file where we add postCSS configurations, where we can add our desired plugins, so that css framework classes we are using gets compiled to normal CSS.

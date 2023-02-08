@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import TitleContext from '../context/TitleContext';
 
 export const Title = () => {
+  const {title} = useContext(TitleContext);
   return (
-    <div>
+    <div className='ml-3'>
       <Link to='/'>
-        <span className='font-bold text-2xl'>Food Nation</span>
+        <span className='font-bold text-2xl'>{title}</span>
       </Link>
     </div>
   );
@@ -51,7 +54,7 @@ const Header = () => {
         >
           {isLoggedIn ? 'Logout' : 'Login'}
         </button>
-      </div> 
+      </div>
     </header>
   );
 };

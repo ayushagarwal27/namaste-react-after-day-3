@@ -1,6 +1,7 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
+import TitleContext from './context/TitleContext';
 import Header from './Components/Header';
 import Body from './Components/Body/Body';
 import ContactUs from './Components/ContactUs';
@@ -9,14 +10,17 @@ import ErrorPage from './Components/ErrorPage';
 import LoginPage from './Components/LoginPage';
 import Profile from './Components/Profile';
 import useOnline from './hooks/useOnline';
+import Faq from './Components/FAQ/Faq';
+
 import './index.css';
 
 const RestaurantDetail = lazy(() => import('./Components/RestaurantDetail'));
 
 const AppLayout = () => {
   const isOnline = useOnline();
+  const [title, setTitle] = useState('Food Nation');
   return (
-    <>
+    <TitleContext.Provider value={{ title, setTitle }}>
       <Header />
       {isOnline ? (
         <Outlet />
@@ -25,7 +29,7 @@ const AppLayout = () => {
           🔴 Oops you seems to offline, please check your internet connection.{' '}
         </h2>
       )}
-    </>
+    </TitleContext.Provider>
   );
 };
 
@@ -55,6 +59,7 @@ const appRouter = createBrowserRouter([
         ),
       },
       { path: 'login', element: <LoginPage /> },
+      { path: 'faq', element: <Faq /> },
     ],
     errorElement: <ErrorPage />,
   },

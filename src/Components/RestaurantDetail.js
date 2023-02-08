@@ -2,10 +2,13 @@ import { useParams } from 'react-router-dom';
 import { IMG_URL } from '../config';
 import Shimmer from './Body/Shimmer';
 import useRestaurantDetail from '../hooks/useRestaurantDetail';
+import { useContext } from 'react';
+import TitleContext from '../context/TitleContext';
 
 const RestaurantDetail = () => {
   const { id } = useParams();
   const restaurantDetail = useRestaurantDetail(id);
+  const {title} = useContext(TitleContext);
 
   if (!restaurantDetail) {
     return <Shimmer />;
@@ -35,6 +38,7 @@ const RestaurantDetail = () => {
             </p>
           ))}
       </div>
+      <span className='text-gray-400 mt-2'>{title}</span>
     </div>
   );
 };

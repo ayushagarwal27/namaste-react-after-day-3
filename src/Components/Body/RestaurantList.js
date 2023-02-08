@@ -48,7 +48,7 @@ const RestaurantList = () => {
           Search
         </button>
       </div>
-      <div className='flex flex-wrap'>
+      <div className='flex flex-wrap justify-center'>
         {filteredRestaurants.length > 0 ? (
           filteredRestaurants.map(restaurant => (
             <Link
