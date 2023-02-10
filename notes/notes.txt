@@ -1,0 +1,20 @@
+1. What is prop drilling ?
+   - When we pass top-level component state to deeply nested child components, we need to pass it as props. For this we pass props from component to component, starting from root component to its children, till nested component is reached.
+   - This is known as prop drilling.
+   - One major con of prop drilling is, that the component which don't require parent state need, have access to it, leading to component re-render whenever the state changes.
+
+2. What is lifting the state up ?
+   - Sometimes we want to change of two components together, for this we remove the state from children components and move it to the closest parent, passing it to children as props.
+   - Eg: - Dynamic accordion, where one closes, when we click on other accordion button.
+
+3. What is Context Provider and Context Consumer ?
+   - Context is designed to share data that can be considered “global” for a tree of React components, such as the current authenticated user, theme, or preferred language. 
+   - Context Provider React component allows consuming components to subscribe to context changes.
+   - The Provider component accepts a value prop to be passed to consuming components that are descendants of this Provider.
+   - Context Consumer a React component that subscribes to context changes. 
+   - Requires a function as a child. The function receives the current context value and returns a React node. The value argument passed to the function will be equal to the value prop of the closest Provider for this context above in the tree.
+   - If there is no Provider for this context above, the value argument will be equal to the defaultValue that was passed to createContext().
+
+4. If we don't pass value to provider, will it take default value ?
+   - if we use Context Provider component 'value' prop is required
+   - passing undefined as a Provider value does not cause consuming components to use default value

@@ -13,23 +13,27 @@ import useOnline from './hooks/useOnline';
 import Faq from './Components/FAQ/Faq';
 
 import './index.css';
+import UserContext from './context/UserContext';
 
 const RestaurantDetail = lazy(() => import('./Components/RestaurantDetail'));
 
 const AppLayout = () => {
   const isOnline = useOnline();
   const [title, setTitle] = useState('Food Nation');
+  const [user, setUser] = useState({ name: 'ABC', email: 'abc@email.com' });
   return (
-    <TitleContext.Provider value={{ title, setTitle }}>
-      <Header />
-      {isOnline ? (
-        <Outlet />
-      ) : (
-        <h2>
-          🔴 Oops you seems to offline, please check your internet connection.{' '}
-        </h2>
-      )}
-    </TitleContext.Provider>
+    <UserContext.Provider value={{ user, setUser }}>
+      <TitleContext.Provider value={{ title, setTitle }}>
+        <Header />
+        {isOnline ? (
+          <Outlet />
+        ) : (
+          <h2>
+            🔴 Oops you seems to offline, please check your internet connection.{' '}
+          </h2>
+        )}
+      </TitleContext.Provider>
+    </UserContext.Provider>
   );
 };
 
