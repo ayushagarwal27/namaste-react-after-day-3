@@ -2,13 +2,17 @@ import { useParams } from 'react-router-dom';
 import { IMG_URL } from '../config';
 import Shimmer from './Body/Shimmer';
 import useRestaurantDetail from '../hooks/useRestaurantDetail';
-import { useContext } from 'react';
-import TitleContext from '../context/TitleContext';
+import { useDispatch } from 'react-redux';
+import { addItem } from '../store/cartSlice';
 
 const RestaurantDetail = () => {
   const { id } = useParams();
   const restaurantDetail = useRestaurantDetail(id);
-  const {title} = useContext(TitleContext);
+  const dispatch = useDispatch();
+
+  function addToCart(item) {
+    dispatch(addItem(item));
+  }
 
   if (!restaurantDetail) {
     return <Shimmer />;
@@ -32,13 +36,19 @@ const RestaurantDetail = () => {
         {Object.values(restaurantDetail?.menu?.items)
           .slice(0, 15)
           .map(item => (
-            <p key={item.id} className='text-xl'>
-              - {item.name}
-              <br />
-            </p>
+            <div key={item.id} className='flex justify-between items-center'>
+              <p className='text-xl'>- {item.name}</p>
+              <button
+                onClick={() => {
+                  addToCart(item);
+                }}
+                className='p-2 bg-orange-700 text-yellow-100 m-2 rounded-lg hover:bg-orange-600'
+              >
+                Add to cart
+              </button>
+            </div>
           ))}
       </div>
-      <span className='text-gray-400 mt-2'>{title}</span>
     </div>
   );
 };

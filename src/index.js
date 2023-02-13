@@ -11,9 +11,12 @@ import LoginPage from './Components/LoginPage';
 import Profile from './Components/Profile';
 import useOnline from './hooks/useOnline';
 import Faq from './Components/FAQ/Faq';
+import Cart from './Components/Cart';
 
 import './index.css';
 import UserContext from './context/UserContext';
+import { Provider } from 'react-redux';
+import store from './store/store';
 
 const RestaurantDetail = lazy(() => import('./Components/RestaurantDetail'));
 
@@ -22,18 +25,21 @@ const AppLayout = () => {
   const [title, setTitle] = useState('Food Nation');
   const [user, setUser] = useState({ name: 'ABC', email: 'abc@email.com' });
   return (
-    <UserContext.Provider value={{ user, setUser }}>
-      <TitleContext.Provider value={{ title, setTitle }}>
-        <Header />
-        {isOnline ? (
-          <Outlet />
-        ) : (
-          <h2>
-            🔴 Oops you seems to offline, please check your internet connection.{' '}
-          </h2>
-        )}
-      </TitleContext.Provider>
-    </UserContext.Provider>
+    <Provider store={store}>
+      <UserContext.Provider value={{ user, setUser }}>
+        <TitleContext.Provider value={{ title, setTitle }}>
+          <Header />
+          {isOnline ? (
+            <Outlet />
+          ) : (
+            <h2>
+              🔴 Oops you seems to offline, please check your internet
+              connection.{' '}
+            </h2>
+          )}
+        </TitleContext.Provider>
+      </UserContext.Provider>
+    </Provider>
   );
 };
 
@@ -63,6 +69,7 @@ const appRouter = createBrowserRouter([
         ),
       },
       { path: 'login', element: <LoginPage /> },
+      { path: 'cart', element: <Cart /> },
       { path: 'faq', element: <Faq /> },
     ],
     errorElement: <ErrorPage />,

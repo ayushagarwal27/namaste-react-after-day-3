@@ -1,5 +1,3 @@
-import { useContext } from 'react';
-import TitleContext from '../../context/TitleContext';
 import { IMG_URL } from '../../config';
 
 const RestaurantCard = ({
@@ -9,7 +7,6 @@ const RestaurantCard = ({
   locality,
   cuisines,
 }) => {
-  const { title } = useContext(TitleContext);
   return (
     <div className='w-64 h-80 m-10 shadow-md hover:-translate-y-2 hover:shadow-xl'>
       <div>
@@ -30,7 +27,6 @@ const RestaurantCard = ({
         </div>
         <p>{locality}</p>
         <p>{rating}</p>
-        <p className='text-gray-400'>{title}</p>
       </div>
     </div>
   );

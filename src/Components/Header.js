@@ -2,9 +2,10 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import TitleContext from '../context/TitleContext';
+import { useSelector } from 'react-redux';
 
 export const Title = () => {
-  const {title} = useContext(TitleContext);
+  const { title } = useContext(TitleContext);
   return (
     <div className='ml-3'>
       <Link to='/'>
@@ -17,6 +18,7 @@ export const Title = () => {
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
+  const cartItems = useSelector(store => store.cart.items);
   return (
     <header className='flex justify-between items-center bg-yellow-100 p-1'>
       <Title />
@@ -34,11 +36,16 @@ const Header = () => {
             </li>
           </ul>
         </nav>
-        <div className='w-8 h-8 -mb-2 ml-3'>
-          <img
-            src='https://www.freepnglogos.com/uploads/shopping-cart-png/shopping-cart-svg-png-icon-download-28.png'
-            alt='cart'
-          />
+        <div className='w-10 h-8 -mb-2 ml-3'>
+          <Link to='/cart' className='flex mr-2'>
+            <img
+              src='https://www.freepnglogos.com/uploads/shopping-cart-png/shopping-cart-svg-png-icon-download-28.png'
+              alt='cart'
+            />{' '}
+            <span className='text-md mx-2 bg-orange-600 p-2 text-lime-50 text-center -mt-2  rounded-full'>
+              {cartItems.length}
+            </span>
+          </Link>
         </div>
 
         <button

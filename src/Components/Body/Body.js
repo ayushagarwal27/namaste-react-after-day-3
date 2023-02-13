@@ -8,15 +8,15 @@ const Body = () => {
   const { user } = useContext(UserContext);
   return (
     <div className='flex flex-col'>
-      <input
+      {/* <input
         placeholder='Change Title'
         onChange={e => {
           setTitle(e.target.value);
         }}
         className='border border-black p-3 mt-3 w-3/4 mx-auto'
         value={title}
-      />
-      <h2 className='text-center'>{user.name}</h2>
+      /> */}
+      {/* <h2 className='text-center'>{user.name}</h2> */}
       <RestaurantList />
     </div>
   );
