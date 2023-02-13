@@ -2,16 +2,21 @@ import { useParams } from 'react-router-dom';
 import { IMG_URL } from '../config';
 import Shimmer from './Body/Shimmer';
 import useRestaurantDetail from '../hooks/useRestaurantDetail';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addItem } from '../store/cartSlice';
 
 const RestaurantDetail = () => {
   const { id } = useParams();
   const restaurantDetail = useRestaurantDetail(id);
   const dispatch = useDispatch();
+  const cartItems = useSelector(store => store.cart.items);
 
   function addToCart(item) {
     dispatch(addItem(item));
+  }
+
+  function alreadyAddedToCart(items, id) {
+    return items.find(el => el.id === id);
   }
 
   if (!restaurantDetail) {
@@ -40,11 +45,17 @@ const RestaurantDetail = () => {
               <p className='text-xl'>- {item.name}</p>
               <button
                 onClick={() => {
+                  if (alreadyAddedToCart(cartItems, item.id)) {
+                    return;
+                  }
                   addToCart(item);
                 }}
-                className='p-2 bg-orange-700 text-yellow-100 m-2 rounded-lg hover:bg-orange-600'
+                disabled={alreadyAddedToCart(cartItems, item.id)}
+                className='p-2 bg-orange-700 text-yellow-100 m-2 rounded-lg hover:bg-orange-600 disabled:cursor-no-drop disabled:bg-gray-500'
               >
-                Add to cart
+                {alreadyAddedToCart(cartItems, item.id)
+                  ? 'Added to Cart'
+                  : 'Add to cart'}
               </button>
             </div>
           ))}
