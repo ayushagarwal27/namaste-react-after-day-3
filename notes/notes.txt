@@ -1,20 +1,42 @@
-1. What is prop drilling ?
-   - When we pass top-level component state to deeply nested child components, we need to pass it as props. For this we pass props from component to component, starting from root component to its children, till nested component is reached.
-   - This is known as prop drilling.
-   - One major con of prop drilling is, that the component which don't require parent state need, have access to it, leading to component re-render whenever the state changes.
+1. useContext vs Redux ?
+   - Both useContext and redux are state management tools.
+   - Both helps to avoid prop drilling.
+   - Initial set up of react context is easier than redux.
+   - useContext is already built into react applications, while redux requires external npm install 'redux' library and 'react-redux'
+   - Debugging is hard in React Context, in Redux it is easy with lot more options using redux dev tools.
+   - redux is useful in large scale projects where we have defined places for global state changes, with consistent API, throughout application.
 
-2. What is lifting the state up ?
-   - Sometimes we want to change of two components together, for this we remove the state from children components and move it to the closest parent, passing it to children as props.
-   - Eg: - Dynamic accordion, where one closes, when we click on other accordion button.
+2. Advantages of using Redux Toolkit over Redux ?
+   - Easier to configure store
+   - A configureStore() function which provides automatic support for Redux-thunk, Redux DevTools Extension, and also passes the default middleware.
+   - Redux Toolkit simplifies store setup down to a single clear function call, while retaining the ability to fully configure the store's options if you need to
+   - Redux Toolkit eliminates accidental mutations, which have always been the #1 cause of Redux bugs
+   - Redux Toolkit eliminates the need to write any action creators or action types by hand
+   - Redux Toolkit eliminates the need to write manual and error-prone immutable update logic
+   - Redux Toolkit makes it easy to write a Redux feature's code in one file, instead of spreading it across multiple separate files
+   - Redux Toolkit offers excellent TS support, with APIs that are designed to give you excellent type safety and minimize the number of types you have to define in your code
+   - RTK Query can eliminate the need to write any thunks, reducers, action creators, or effect hooks to manage fetching data and tracking loading state
 
-3. What is Context Provider and Context Consumer ?
-   - Context is designed to share data that can be considered “global” for a tree of React components, such as the current authenticated user, theme, or preferred language. 
-   - Context Provider React component allows consuming components to subscribe to context changes.
-   - The Provider component accepts a value prop to be passed to consuming components that are descendants of this Provider.
-   - Context Consumer a React component that subscribes to context changes. 
-   - Requires a function as a child. The function receives the current context value and returns a React node. The value argument passed to the function will be equal to the value prop of the closest Provider for this context above in the tree.
-   - If there is no Provider for this context above, the value argument will be equal to the defaultValue that was passed to createContext().
+3. Explain Dispatcher
+   - In order to change the global store state in redux, we need to dispatch an action.
+   - for this we use useDispatch hook from 'react-redux' library, and pass action to it which will in turn call respective reducer function.
+   - Action we can pass payload, i.e. modified or new data to be reflected in global state.
 
-4. If we don't pass value to provider, will it take default value ?
-   - if we use Context Provider component 'value' prop is required
-   - passing undefined as a Provider value does not cause consuming components to use default value
+4. Explain Reducer
+   - Reducers are functions that take current state and action as argument and returns a new state result.
+   - In other words, (state, action) => newState.
+
+5. Explain Slice
+   - A slice in redux can be considered as splitting up redux state into multiple slices.
+   - A Redux Slice is a collection of initialState, reducer logic and actions for a single feature of our app. 
+
+6. Explain Selector
+   - When we want to subscribe to the redux store, and want to reflect those changes in our UI, we use some for of selector.
+   - In react we use useSelector hook from 'react-redux' library.
+   - We get access to root state in redux via useSelector hook.
+   - Thus, we must use dot (.) notation to get state we want for render optimizations.
+
+7. Explain createSlice and configurations it takes
+   - In Redux-Toolkit, the createSlice method helps us create a slice of the redux-store.
+   - createSlice is a function that take initialState, name of slice and an object of reducer functions.
+   - It automatically generates action creators and action types that correspond to the reducers and state.
